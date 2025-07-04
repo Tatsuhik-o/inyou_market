@@ -3,4 +3,6 @@ import type { TContext } from "./types";
 
 export const MyContext = createContext<TContext>({
   handleThemeChange: () => {},
+  currentLanguage: "en",
+  handleLanguageChange: () => {},
 });

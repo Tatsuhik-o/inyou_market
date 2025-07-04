@@ -25,6 +25,7 @@ export default function useTheme(cooldown: number = 500) {
     },
     background: {
       default: "#F9F9F9",
+      paper: "#FFFFFF",
     },
     text: {
       primary: "#000000",
@@ -47,6 +48,7 @@ export default function useTheme(cooldown: number = 500) {
     },
     background: {
       default: "#121212",
+      paper: "#000000",
     },
     text: {
       primary: "#FFFFFF",

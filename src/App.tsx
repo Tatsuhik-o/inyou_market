@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import useTheme from "./hooks/useTheme";
 import { MyContext } from "./utils/context";
 import Protected from "./layouts/Protected";
@@ -16,12 +16,17 @@ import SignUp from "./pages/SignUp";
 import Order_ID from "./pages/Order_ID";
 import Product_ID from "./pages/Product_ID";
 import Customer_ID from "./pages/Customer_ID";
+import useLanguage from "./hooks/useLanguage";
 
 function App() {
-  const { MyTheme, handleThemeChange } = useTheme();
+  const { MyTheme, handleThemeChange } = useTheme(1000);
+  const { currentLanguage, handleLanguageChange } = useLanguage(1000);
   return (
     <ThemeProvider theme={MyTheme}>
-      <MyContext.Provider value={{ handleThemeChange }}>
+      <CssBaseline />
+      <MyContext.Provider
+        value={{ handleThemeChange, currentLanguage, handleLanguageChange }}
+      >
         <BrowserRouter>
           <Routes>
             <Route element={<Protected />}>
