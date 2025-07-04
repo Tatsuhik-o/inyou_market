@@ -19,13 +19,18 @@ import Customer_ID from "./pages/Customer_ID";
 import useLanguage from "./hooks/useLanguage";
 
 function App() {
-  const { MyTheme, handleThemeChange } = useTheme(1000);
+  const { MyTheme, handleThemeChange, currentTheme } = useTheme(1000);
   const { currentLanguage, handleLanguageChange } = useLanguage(1000);
   return (
     <ThemeProvider theme={MyTheme}>
       <CssBaseline />
       <MyContext.Provider
-        value={{ handleThemeChange, currentLanguage, handleLanguageChange }}
+        value={{
+          handleThemeChange,
+          currentLanguage,
+          handleLanguageChange,
+          currentTheme,
+        }}
       >
         <BrowserRouter>
           <Routes>
