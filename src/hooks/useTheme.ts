@@ -1,11 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createTheme } from "@mui/material";
 import type { PaletteOptions } from "@mui/material";
 
 export default function useTheme(cooldown: number = 500) {
   const [currentTheme, setCurrentTheme] = useState<"light" | "dark">(() => {
     const temp = localStorage.getItem("theme");
-    return temp === "light" || temp === "dark" ? temp : "light";
+    return temp == "dark" ? "dark" : "light";
   });
   let themeCoolDown = useRef<boolean>(false);
 
@@ -31,6 +31,12 @@ export default function useTheme(cooldown: number = 500) {
       primary: "#000000",
       secondary: "#333333",
     },
+    error: {
+      main: "#D32F2F",
+      light: "#FF6659",
+      dark: "#9A0007",
+      contrastText: "#FFFFFF",
+    },
   };
   const darkPalette: PaletteOptions = {
     mode: "dark",
@@ -53,6 +59,12 @@ export default function useTheme(cooldown: number = 500) {
     text: {
       primary: "#FFFFFF",
       secondary: "#CCCCCC",
+    },
+    error: {
+      main: "#EF5350",
+      light: "#FF867C",
+      dark: "#B61827",
+      contrastText: "#000000",
     },
   };
 
@@ -80,5 +92,9 @@ export default function useTheme(cooldown: number = 500) {
     }, cooldown);
   };
 
-  return { handleThemeChange, MyTheme };
+  useEffect(() => {
+    localStorage.setItem("theme", currentTheme);
+  }, [currentTheme]);
+
+  return { handleThemeChange, MyTheme, currentTheme };
 }

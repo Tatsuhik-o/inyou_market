@@ -5,4 +5,5 @@ export const MyContext = createContext<TContext>({
   handleThemeChange: () => {},
   currentLanguage: "en",
   handleLanguageChange: () => {},
+  currentTheme: "light",
 });
