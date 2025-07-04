@@ -1,16 +1,16 @@
-import HybridBox from "../../components/HybridBox";
-import { styled, TextField, Box, Button } from "@mui/material";
 import { useState, useReducer, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import useError from "../../hooks/useError";
+import { MyContext } from "../../utils/context";
 import en from "../../locales/en/signup.json";
 import ja from "../../locales/ja/signup.json";
-import { errorMessages } from "../../utils/constants";
-import { MyContext } from "../../utils/context";
-import { SignUpSchema } from "../../utils/schemas";
-import type { TSignUp } from "../../utils/types";
+import HybridBox from "../../components/HybridBox";
+import { styled, TextField, Box, Button } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 import { AnimatePresence, motion } from "motion/react";
+import useError from "../../hooks/useError";
+import { errorMessages } from "../../utils/constants";
+import { SignUpSchema } from "../../utils/schemas";
+import type { TSignUp } from "../../utils/types";
 
 const StyledForm = styled("form", {
   shouldForwardProp: (prop) => prop !== "danger",
