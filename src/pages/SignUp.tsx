@@ -1,3 +1,12 @@
+import { Container } from "@mui/material";
+
 export default function SignUp() {
-  return <div>SignUp</div>;
+  return (
+    <Container
+      sx={{
+        width: "100%",
+        height: "100%",
+      }}
+    ></Container>
+  );
 }

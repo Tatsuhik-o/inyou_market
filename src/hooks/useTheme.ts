@@ -60,7 +60,15 @@ export default function useTheme(cooldown: number = 500) {
     palette: {
       ...(currentTheme === "light" ? lightPalette : darkPalette),
     },
-    components: {},
+    components: {
+      MuiTypography: {
+        styleOverrides: {
+          body2: {
+            fontFamily: "Source Code Pro",
+          },
+        },
+      },
+    },
   });
 
   const handleThemeChange = () => {
