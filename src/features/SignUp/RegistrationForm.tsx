@@ -1,5 +1,4 @@
 import { useState, useReducer, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../utils/context";
 import en from "../../locales/en/signup.json";
 import ja from "../../locales/ja/signup.json";
@@ -11,6 +10,7 @@ import useError from "../../hooks/useError";
 import { errorMessages } from "../../utils/constants";
 import { SignUpSchema } from "../../utils/schemas";
 import type { TSignUp } from "../../utils/types";
+import { useNavigate } from "react-router-dom";
 
 const StyledForm = styled("form", {
   shouldForwardProp: (prop) => prop !== "danger",
@@ -48,13 +48,16 @@ const initialState: TSignUp = {
 };
 
 type TAction = {
-  type: keyof TSignUp;
+  type: keyof TSignUp | "reset";
   payload: string;
 };
 
 const reducer = (state: TSignUp, action: TAction) => {
   if (action.type in state) {
     return { ...state, [action.type]: action.payload };
+  }
+  if (action.type === "reset") {
+    return initialState;
   }
   return state;
 };
@@ -69,10 +72,6 @@ export default function RegistrationForm() {
 
   const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formElements.password !== formElements.repeatPassword) {
-      setError(errorMessages[currentLanguage]["confirm"]);
-      return;
-    }
     const parseResult = SignUpSchema.safeParse(formElements);
     type ErrorMessageKey = keyof (typeof errorMessages)["en"];
     const errorMessageKey =
@@ -81,6 +80,10 @@ export default function RegistrationForm() {
         : "";
     if (errorMessageKey) {
       setError(errorMessages[currentLanguage][errorMessageKey]);
+      return;
+    }
+    if (formElements.password !== formElements.repeatPassword) {
+      setError(errorMessages[currentLanguage]["confirm"]);
       return;
     }
     try {
@@ -104,7 +107,12 @@ export default function RegistrationForm() {
         setError(errorMessages[currentLanguage]["general"]);
         return;
       }
-      navigator("/");
+      setError(
+        currentLanguage === "en"
+          ? "Account created successfully ..."
+          : "アカウントが正常に作成されました..."
+      );
+      setFormElements({ type: "reset", payload: "" });
     } catch (err) {
       console.log(err);
     } finally {
@@ -183,7 +191,11 @@ export default function RegistrationForm() {
             <CircularProgress />
           ) : (
             <>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => navigator("/login")}
+              >
                 {content.back}
               </Button>
               <Button variant="contained" color="secondary" type="submit">
