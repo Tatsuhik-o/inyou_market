@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SignUpSchema } from "./schemas";
+import { SignUpSchema, LoginSchema } from "./schemas";
 
 export type TContext = {
   handleThemeChange: () => void;
@@ -9,3 +9,5 @@ export type TContext = {
 };
 
 export type TSignUp = z.infer<typeof SignUpSchema>;
+
+export type TLogin = z.infer<typeof LoginSchema>;

@@ -1,0 +1,10 @@
+{
+  "email": "Email",
+  "password": "Password",
+  "signup": "Sign Up",
+  "login": "Log In",
+  "errorMessage": "Bad Credentials",
+  "invalidInput": "Email or Password is invalid",
+  "serverError": "Internal Server Error, Try Again",
+  "500": "Internal Server Error, Try Again"
+}

@@ -34,3 +34,22 @@ export const SignUpSchema = z.object({
       }
     ),
 });
+
+export const LoginSchema = z.object({
+  email: z
+    .string()
+    .regex(
+      /^(?!.*\.\.)(?!.*__)(?!.*--)(?!.*\.@)(?!.*_@)(?!.*-@)[a-zA-Z0-9]+[a-zA-Z0-9._-]*@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+$/,
+      {
+        message: "email",
+      }
+    ),
+  password: z
+    .string()
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_@?;:,+°çè()&-])[a-zA-Z0-9!_@?;:,+°çè()&-]{8,}$/,
+      {
+        message: "password",
+      }
+    ),
+});
