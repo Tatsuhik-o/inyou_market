@@ -43,8 +43,6 @@ export default function Login() {
   const navigator = useNavigate();
   const { login, loginState } = useLogin();
 
-  console.log(loginState);
-
   if (loginState === "success") {
     navigator("/");
   }
