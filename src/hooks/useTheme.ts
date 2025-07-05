@@ -24,7 +24,7 @@ export default function useTheme(cooldown: number = 500) {
       contrastText: "#FFFFFF",
     },
     background: {
-      default: "#F9F9F9",
+      default: "#F0F0F0",
       paper: "#FFFFFF",
     },
     text: {
@@ -53,7 +53,7 @@ export default function useTheme(cooldown: number = 500) {
       contrastText: "#000000",
     },
     background: {
-      default: "#121212",
+      default: "#1F1F1F",
       paper: "#000000",
     },
     text: {
